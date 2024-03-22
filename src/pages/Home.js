@@ -1,16 +1,26 @@
+// Home.js
 import { useEffect, useState } from "react";
+import MovieCard from '../components/MovieCard';
+import moviesData from '../db.json'; // Adjust the path to your JSON file as needed
 
 function Home() {
-  return (
+ const [movies, setMovies] = useState([]);
+
+ useEffect(() => {
+    // Use the imported JSON data
+    setMovies(moviesData.movies);
+ }, []);
+
+ return (
     <>
-      <header>
-        {/* What component should go here? */}
-      </header>
       <main>
-        {/* Info goes here! */}
+        <h1>Home Page</h1>
+        {movies.map(movie => (
+          <MovieCard key={movie.id} title={movie.title} id={movie.id} />
+        ))}
       </main>
     </>
-  );
+ );
 };
 
 export default Home;
